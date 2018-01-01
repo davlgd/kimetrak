@@ -1,0 +1,49 @@
+body {
+	margin: 0;
+}
+
+#main {
+	width: 500px;
+}
+
+#main>div {
+	text-align: center
+}
+
+#showResults {
+	text-align: center;
+}
+
+#listTrackersHead {
+	background-color: #014359;
+	text-align: center;
+	font-size: 22px;
+	color: white;
+	padding: 5px 10px;
+	margin: 0px;
+	position: relative;
+}
+
+a:link, a:visited {
+	color: #014359;
+}
+
+a:hover {
+	color: #e88228;
+}
+
+.button {
+	background-color: #014359;
+	color: white!important;
+	border-radius: 3px;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	margin-bottom: 12px;
+  }
+
+  .button:hover {
+	  background-color: #e88228;
+  }

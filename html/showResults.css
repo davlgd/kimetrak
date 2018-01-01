@@ -1,0 +1,42 @@
+body {
+    background-color: #f3f3f3;
+    margin: 0 auto;
+    width: 95%;
+}
+
+h1 {
+    text-decoration: underline;
+}
+.source, .source_unfolded {
+    font-weight: bolder;
+    text-decoration: underline;
+    margin-bottom: 12px;
+    list-style-type: none;
+    margin-left: -15px;
+}
+
+.source:before {
+    content: "+";
+    padding-right: 8px;
+}
+
+.source_unfolded:before {
+    content: "-";
+    padding-right: 8px;
+}
+
+.foldable {
+    display: none;
+}
+
+.unfolded {
+    display: block;
+}
+
+a:link, a:visited {
+	color: #014359;
+}
+
+a:hover {
+	color: #e88228;
+}
