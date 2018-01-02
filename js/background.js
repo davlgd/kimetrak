@@ -17,18 +17,15 @@
 
 	chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) 
 	{sendResponse(sessionStorage.getItem(msg.action));});
+	
+	chrome.windows.onFocusChanged.addListener(function (windowId)
+	{
+		if (windowId > 0) GetActiveTabAndClean("Changement de fenêtre");
+	});
 
 	chrome.tabs.onActivated.addListener(function (tab)
 	{
-		if (tab.tabId > 0)
-		{
-			chrome.tabs.get(tab.tabId, function (tabInfos)
-			{
-				ClearAndNotify("Changement d'onglet", false)
-				ShowOldTabInfos(tabInfos);
-				lastTabVerified = tabInfos;
-			});
-		}
+		if (tab.tabId > 0) GetActiveTabAndClean("Changement d'onglet");
 	});
 	
 	chrome.webNavigation.onCommitted.addListener(function(thisCommit)
@@ -80,6 +77,17 @@
 		)},
 		{urls: ["<all_urls>"]}
 	);
+	
+	function GetActiveTabAndClean(message)
+	{
+		chrome.tabs.query({active: true, currentWindow: true}, function (tab)
+		{
+			const tabInfos = tab[0];
+			ClearAndNotify(message, false)
+			ShowOldTabInfos(tabInfos);
+			lastTabVerified = tabInfos;
+		});
+	}
 	
 	function LogAndStoreResult()
 	{
