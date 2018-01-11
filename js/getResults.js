@@ -2,8 +2,7 @@
 (function() {
     chrome.runtime.sendMessage({action:"thirdPartyRequests"}, function(response) 
     {
-        const infos = JSON.parse(response);
-        
+        const infos = response;
         if (infos.length > 0)
         {
             const TPData = ExtractData (infos);

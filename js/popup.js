@@ -26,10 +26,10 @@
 		document.getElementById("moreDetails").appendChild(moreDetails);
 	}
 
-	function FillRequestsList(list, nodeToUpdate)
+	function FillRequestsList(list)
 	{
-		while (nodeToUpdate.firstChild) nodeToUpdate.removeChild(nodeToUpdate.firstChild);
-
+		while (hostnamesList.firstChild) hostnamesList.removeChild(hostnamesList.firstChild);
+    console.log("list", list)
 		for (let i = 0; i < list.length; i++) 
 		{
 			const hostname = new URL(list[i].url).hostname;
@@ -41,16 +41,16 @@
 
 			hostnameLink.appendChild(hostnameText);
 			listElement.appendChild(hostnameLink);
-			nodeToUpdate.appendChild(listElement);
+      hostnamesList.appendChild(listElement);
 		}
 	}
 
 	function GetInfosFromBG()
 	{
-		chrome.runtime.sendMessage({action:"thisTabRequests"}, function(response) 
+		chrome.runtime.sendMessage({action:"thisTabRequests"}, function(response,...args)
 		{
-			const infos = JSON.parse(response);
-			if (infos.count > 0)
+			const infos = response;
+			if (infos && infos.count > 0)
 			{
 				const textPlural = infos.count < 2 ? " domaine tiers sur " : " domaines tiers sur ";
 				const fullTitle = infos.count + textPlural + infos.hostname;
@@ -58,11 +58,11 @@
 				document.createTextNode("Obtenir plus de détails");
 				listTrackersHead.textContent = fullTitle;
 				
-				FillRequestsList(infos.content, hostnamesList);
+				FillRequestsList(infos.requests);
 			}
 			else
 			{
-				listTrackersHead.textContent = "Aucun domaine tiers détecté" + infos.hostname;
+				listTrackersHead.textContent = "Aucun domaine tiers détecté";
 				listTrackers.textContent = "";
 			}	
 		});

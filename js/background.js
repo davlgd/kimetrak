@@ -1,5 +1,63 @@
 "use strict";
 (function() {
+	class Domain{
+		constructor(hostname){
+			this.hostname = hostname;
+			this.cleanedHostName = this.getCleanedHostName(hostname)
+			this.thirdPartys = new Map();
+		}
+		addThirdParty(request){
+			if(this.isThirdPartyDomain(request)){
+        const thirdParty = new ThirdParty(request);
+        this.thirdPartys.set(thirdParty.key, thirdParty);
+			}
+			return this;
+		}
+		getCleanedHostName(hostname){
+			return hostname.startsWith("www.") ? hostname.substr(4) : hostname
+		}
+		isThirdPartyDomain(request)
+    {
+      return request.url.indexOf(this.cleanedHostName) == -1;
+    }
+    toJson(){
+      const requests = Array.from(this.thirdPartys.values()).map(r=>r.toJson());
+			return{
+        hostname: this.hostname,
+        requests,
+				count: requests.length
+			}
+		}
+	}
+	class ThirdParty{
+		constructor(request){
+			this.data = this.extractDataFromRequest(request)
+		}
+    get key(){
+      return this.data.fullUrl
+    }
+		extractDataFromRequest(request)
+    {
+      const requestURL = new URL(request.url);
+
+      return {
+        iframe:(request.frameId > 0) ? true:false,
+        ip:request.ip,
+        secure:(requestURL.protocol == "https:") ? true:false,
+        timeStamp:request.timeStamp,
+        type:request.type,
+        url:requestURL.protocol + "//" + requestURL.hostname + requestURL.pathname,
+				fullUrl: request.url,
+        hostname: requestURL.hostname,
+        pathname: requestURL.pathname
+      };
+    }
+    toJson(){
+			return {
+				...this.data
+			}
+		}
+	}
 	const analyzeMaxDelay = 5000;
 	const emptyRequestsList = {
 		content:{}, 
@@ -12,11 +70,34 @@
 	let isUpdatable = true;
 	let thisTab = new Object();
 	let lastTabVerified = new Object();
+	const domains = new Map();
 	
 	sessionStorage.setItem("thisTabRequests", JSON.stringify(emptyRequestsList));
 
-	chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) 
-	{sendResponse(sessionStorage.getItem(msg.action));});
+  browser.runtime.onMessage.addListener(async function (msg, sender)
+	{
+
+	  switch(msg.action){
+      case "thirdPartyRequests":
+        return Array.from(domains.values()).map(d=>d.toJson());
+        break;
+      case "thisTabRequests":
+        const tabs = await browser.tabs.query({active: true, currentWindow: true});
+        const tabInfos = tabs[0];
+        const domain = domains.get(new URL(tabInfos.url).hostname)
+        console.log("domain found with", new URL(tabInfos.url).hostname, domain)
+        if(domain) {
+          console.log("sending", {...domain.toJson()})
+          return domain.toJson()
+        }else{
+          return
+        }
+        break;
+    }
+    return;
+	});
+
+
 	
 	chrome.windows.onFocusChanged.addListener(function (windowId)
 	{
@@ -49,8 +130,16 @@
 		}
 	});
 
-	chrome.webRequest.onCompleted.addListener(function(thisRequest) 
+	chrome.webRequest.onCompleted.addListener(async function(thisRequest)
 	{
+		const tabinfo = await browser.tabs.get(thisRequest.tabId);
+    const hostname = new URL(tabinfo.url).hostname
+		let domain = domains.get(hostname)
+		if(!domain){
+      domain = new Domain(hostname)
+      domains.set(hostname, domain)
+		}
+    domain.addThirdParty(thisRequest)
 		if (thisRequest.tabId == thisTab.id) chrome.tabs.get(thisTab.id, function(thisTabInfo){
 		
 				const thisTabHostname = new URL(thisTabInfo.url).hostname;
