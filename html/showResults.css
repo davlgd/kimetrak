@@ -13,6 +13,7 @@ h1 {
     margin-bottom: 12px;
     list-style-type: none;
     margin-left: -15px;
+    cursor: pointer;
 }
 
 .source:before {
