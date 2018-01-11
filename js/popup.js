@@ -16,7 +16,7 @@
 	function AddMoreDetailsButton()
 	{
 		let moreDetails = document.createElement('a');
-		moreDetails.setAttribute("href", "chrome-extension://" + chrome.runtime.id + "/html/showResults.html");
+		moreDetails.setAttribute("href", chrome.runtime.getURL("html/showResults.html"));
 		moreDetails.setAttribute("target", "_blank");
 		moreDetails.setAttribute("class", "button");
 
