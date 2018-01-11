@@ -134,7 +134,7 @@
 
     function SwitchFoldableLists(e)
     {
-        const className = e.srcElement.id;
+        const className = e.target.id;
         const listName = className.replace("source","list");
         
         let newValue = document.getElementById(listName).attributes.class.value == "unfolded" ? "foldable" : "unfolded";
