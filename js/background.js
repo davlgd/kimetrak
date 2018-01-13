@@ -45,7 +45,7 @@
 
       if (currentTabInfo && tabinfo.id === currentTabInfo.id) {
         UpdateBadgeCountAndColor(domain.thirdPartys.size, true)
-        chrome.runtime.sendMessage({action: 'Update'})//.catch(e => console.error(e))
+        browser.runtime.sendMessage({action: 'Update'}).catch(e => console.error(e))
       }
     } catch (e) {
       console.error(e)

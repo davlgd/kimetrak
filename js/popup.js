@@ -8,10 +8,7 @@
   AddMoreDetailsButton()
   GetInfosFromBG()
 
-  chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    GetInfosFromBG()
-  })
-  browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  browser.runtime.onMessage.addListener(async function (request, sender, sendResponse) {
     GetInfosFromBG()
   })
 
@@ -43,25 +40,21 @@
     }
   }
 
-  function GetInfosFromBG () {
-    browser.runtime.sendMessage({action: 'thisTabRequests'}, function (response) {
-      try {
-        const infos = response
-        if (infos && infos.count > 0) {
-          const textPlural = infos.count < 2 ? ' domaine tiers sur ' : ' domaines tiers sur '
-          const fullTitle = infos.count + textPlural + infos.hostname
-
-          document.createTextNode('Obtenir plus de détails')
-          listTrackersHead.textContent = fullTitle
-
-          FillRequestsList(infos.requests)
-        } else {
-          listTrackersHead.textContent = 'Aucun domaine tiers détecté'
-          listTrackers.textContent = ''
-        }
-      } catch (e) {
-        console.error(e)
+  async function GetInfosFromBG () {
+    try {
+      const infos = await browser.runtime.sendMessage({action: 'thisTabRequests'})
+      if (infos && infos.count > 0) {
+        const textPlural = infos.count < 2 ? ' domaine tiers sur ' : ' domaines tiers sur '
+        const fullTitle = infos.count + textPlural + infos.hostname
+        document.createTextNode('Obtenir plus de détails')
+        listTrackersHead.textContent = fullTitle
+        FillRequestsList(infos.requests)
+      } else {
+        listTrackersHead.textContent = 'Aucun domaine tiers détecté'
+        listTrackers.textContent = ''
       }
-    })
+    } catch (e) {
+      console.error(e)
+    }
   }
 })()
