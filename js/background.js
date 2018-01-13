@@ -44,7 +44,7 @@
       domain.addThirdParty(thisRequest)
 
       if (currentTabInfo && tabinfo.id === currentTabInfo.id) {
-        UpdateBadgeCountAndColor(domain.thirdPartys.size, true)
+        UpdateBadgeCountAndColor(domain.thirdPartysHostnames.size, true)
         browser.runtime.sendMessage({action: 'Update'}).catch(e => console.error(e))
       }
     } catch (e) {
@@ -60,7 +60,7 @@
       const hostname = new URL(currentTabInfo.url).hostname
       let domain = domains.get(hostname)
       if (domain) {
-        UpdateBadgeCountAndColor(domain.thirdPartys.size, true)
+        UpdateBadgeCountAndColor(domain.thirdPartysHostnames.size, true)
       } else {
         UpdateBadgeCountAndColor(0, false)
       }
@@ -100,11 +100,13 @@
       this.hostname = hostname
       this.mainHostName = this.getMainHostName(hostname)
       this.thirdPartys = new Map()
+      this.thirdPartysHostnames = new Set()
     }
     addThirdParty (request) {
       if (this.isThirdPartyDomain(request)) {
         const thirdParty = new ThirdParty(request)
         if (!cdnRegex.exec(thirdParty.data.hostname)) {
+          this.thirdPartysHostnames.add(thirdParty.data.hostname)
           this.thirdPartys.set(thirdParty.key, thirdParty)
         }
       }
@@ -118,10 +120,12 @@
     }
     toJson () {
       const requests = Array.from(this.thirdPartys.values()).map(r => r.toJson()).sort(r => r.hostname)
+      const thirdPartysHostnames = Array.from(this.thirdPartysHostnames.keys())
       return {
         hostname: this.hostname,
         requests,
-        count: requests.length
+        thirdPartysHostnames,
+        count: thirdPartysHostnames.length
       }
     }
   }

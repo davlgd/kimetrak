@@ -27,7 +27,7 @@
   function FillRequestsList (list) {
     while (hostnamesList.firstChild) hostnamesList.removeChild(hostnamesList.firstChild)
     for (let i = 0; i < list.length; i++) {
-      const hostname = new URL(list[i].url).hostname
+      const hostname = list[i]
       const hostnameText = document.createTextNode(hostname)
       const listElement = document.createElement('li')
       const hostnameLink = document.createElement('a')
@@ -48,7 +48,7 @@
         const fullTitle = infos.count + textPlural + infos.hostname
         document.createTextNode('Obtenir plus de détails')
         listTrackersHead.textContent = fullTitle
-        FillRequestsList(infos.requests)
+        FillRequestsList(infos.thirdPartysHostnames)
       } else {
         listTrackersHead.textContent = 'Aucun domaine tiers détecté'
         listTrackers.textContent = ''
