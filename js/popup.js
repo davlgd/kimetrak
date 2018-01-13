@@ -1,70 +1,67 @@
-"use strict";
-(function() {
-	const listTrackersHead = document.getElementById("listTrackersHead");
-	const listTrackers = document.getElementById("listTrackers");
-	const hostnamesList = document.createElement("ol");
-	listTrackers.appendChild(hostnamesList);
-	
-	AddMoreDetailsButton();	
-	GetInfosFromBG();
+'use strict';
+(function () {
+  const listTrackersHead = document.getElementById('listTrackersHead')
+  const listTrackers = document.getElementById('listTrackers')
+  const hostnamesList = document.createElement('ol')
+  listTrackers.appendChild(hostnamesList)
 
-	chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) 
-	{
-		GetInfosFromBG();
-	});
-	
-	function AddMoreDetailsButton()
-	{
-		let moreDetails = document.createElement('a');
-		moreDetails.setAttribute("href", chrome.runtime.getURL("html/showResults.html"));
-		moreDetails.setAttribute("target", "_blank");
-		moreDetails.setAttribute("class", "button");
+  AddMoreDetailsButton()
+  GetInfosFromBG()
 
-		let moreDetailsText = document.createTextNode("Obtenir plus de détails");
-		moreDetails.appendChild(moreDetailsText);
+  chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+    GetInfosFromBG()
+  })
+  browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+    GetInfosFromBG()
+  })
 
-		document.getElementById("moreDetails").appendChild(moreDetails);
-	}
+  function AddMoreDetailsButton () {
+    let moreDetails = document.createElement('a')
+    moreDetails.setAttribute('href', browser.runtime.getURL('html/showResults.html'))
+    moreDetails.setAttribute('target', '_blank')
+    moreDetails.setAttribute('class', 'button')
 
-	function FillRequestsList(list)
-	{
-		while (hostnamesList.firstChild) hostnamesList.removeChild(hostnamesList.firstChild);
-    console.log("list", list)
-		for (let i = 0; i < list.length; i++) 
-		{
-			const hostname = new URL(list[i].url).hostname;
-			const hostnameText = document.createTextNode(hostname);
-			const listElement = document.createElement("li");
-			const hostnameLink = document.createElement("a");
-			hostnameLink.setAttribute("href", "http://" + hostname);
-			hostnameLink.setAttribute("target", "_blank");
+    let moreDetailsText = document.createTextNode('Obtenir plus de détails')
+    moreDetails.appendChild(moreDetailsText)
 
-			hostnameLink.appendChild(hostnameText);
-			listElement.appendChild(hostnameLink);
-      hostnamesList.appendChild(listElement);
-		}
-	}
+    document.getElementById('moreDetails').appendChild(moreDetails)
+  }
 
-	function GetInfosFromBG()
-	{
-		chrome.runtime.sendMessage({action:"thisTabRequests"}, function(response,...args)
-		{
-			const infos = response;
-			if (infos && infos.count > 0)
-			{
-				const textPlural = infos.count < 2 ? " domaine tiers sur " : " domaines tiers sur ";
-				const fullTitle = infos.count + textPlural + infos.hostname;
+  function FillRequestsList (list) {
+    while (hostnamesList.firstChild) hostnamesList.removeChild(hostnamesList.firstChild)
+    for (let i = 0; i < list.length; i++) {
+      const hostname = new URL(list[i].url).hostname
+      const hostnameText = document.createTextNode(hostname)
+      const listElement = document.createElement('li')
+      const hostnameLink = document.createElement('a')
+      hostnameLink.setAttribute('href', 'http://' + hostname)
+      hostnameLink.setAttribute('target', '_blank')
 
-				document.createTextNode("Obtenir plus de détails");
-				listTrackersHead.textContent = fullTitle;
-				
-				FillRequestsList(infos.requests);
-			}
-			else
-			{
-				listTrackersHead.textContent = "Aucun domaine tiers détecté";
-				listTrackers.textContent = "";
-			}	
-		});
-	}
-})();
+      hostnameLink.appendChild(hostnameText)
+      listElement.appendChild(hostnameLink)
+      hostnamesList.appendChild(listElement)
+    }
+  }
+
+  function GetInfosFromBG () {
+    browser.runtime.sendMessage({action: 'thisTabRequests'}, function (response) {
+      try {
+        const infos = response
+        if (infos && infos.count > 0) {
+          const textPlural = infos.count < 2 ? ' domaine tiers sur ' : ' domaines tiers sur '
+          const fullTitle = infos.count + textPlural + infos.hostname
+
+          document.createTextNode('Obtenir plus de détails')
+          listTrackersHead.textContent = fullTitle
+
+          FillRequestsList(infos.requests)
+        } else {
+          listTrackersHead.textContent = 'Aucun domaine tiers détecté'
+          listTrackers.textContent = ''
+        }
+      } catch (e) {
+        console.error(e)
+      }
+    })
+  }
+})()
