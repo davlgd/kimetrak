@@ -13,7 +13,7 @@
           if (domain) {
             return domain.toJson()
           } else {
-            console.log("no data send")
+            console.log('no data send')
           }
           break
       }
@@ -116,7 +116,7 @@
       return !cdnRegex.exec(request.url) && request.url.indexOf(this.mainHostName) === -1
     }
     toJson () {
-      const requests = Array.from(this.thirdPartys.values()).map(r => r.toJson())
+      const requests = Array.from(this.thirdPartys.values()).map(r => r.toJson()).sort(r => r.hostname)
       return {
         hostname: this.hostname,
         requests,
