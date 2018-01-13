@@ -129,7 +129,11 @@
 	function isThirdPartyDomain(site, request)
 	{		
 		if (site.startsWith("www.")) site = site.substr(4);
-		return (request.indexOf(site) != -1) ? false:true;
+		
+		let result = request.indexOf(site) == -1;
+		if (!result && request.startsWith(site) && request.length != site.length) result = true;
+		
+		return result;
 	}
 	
 	function ExtractDataFromRequest(request)
