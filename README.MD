@@ -1,5 +1,7 @@
 # Kimetrak
 
+[English version below](#kimetrak-whos-tracking-me)
+
 Une extension vous permettant de savoir quels sont les domaines tiers chargés depuis les sites que vous visitez au quotidien, et d'en tirer quelques statistiques, notamment sur les domaines susceptibles de vous suivre à travers différents sites.
 
 Si vous êtes éditeur, elle vous permet de savoir quels sont les domaines tiers chargés depuis votre site en un clin d'œil.
