@@ -3,7 +3,7 @@
 
 	"name": "Kimetrak",
 	"description": "Cette extension analyse qui vous traque !",
-	"version": "0.1.0.2",
+	"version": "0.2.0",
 	"icons": { 
 		"16": "ico/kimetrak-16.png",
 		"24": "ico/kimetrak-24.png",
