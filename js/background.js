@@ -91,6 +91,7 @@
     browser.browserAction.setBadgeText(countObject)
     browser.browserAction.setBadgeBackgroundColor(colorObject)
   }
+
   const mainHostNameRegex = new RegExp(/[a-z\-_0-9]+\.[a-z]+$/)
   const cdnRegex = new RegExp(/[cdn]\.[a-z]+$/)
 
