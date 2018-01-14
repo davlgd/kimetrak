@@ -48,8 +48,7 @@
     try {
       const infos = await browser.runtime.sendMessage({action: 'thisTabRequests'})
       if (infos && infos.count > 0) {
-        const textPlural = infos.count < 2 ? ' domaine tiers sur ' : ' domaines tiers sur '
-        const fullTitle = infos.count + textPlural + infos.hostname
+        const textPlural = infos.count < 2 ? '' : 's'
         document.createTextNode(chrome.i18n.getMessage('getMoreStats'))
         listTrackersHead.textContent = chrome.i18n.getMessage('popupTitle', [infos.count, textPlural, infos.hostname])
         FillRequestsList(infos.thirdPartysHostnames)
