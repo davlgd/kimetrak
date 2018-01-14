@@ -1,5 +1,7 @@
 body {
 	margin: 0;
+	font-family: "Segoe UI", Tahoma, sans-serif;
+	font-size: 14px;
 }
 
 #main {
@@ -17,11 +19,15 @@ body {
 #listTrackersHead {
 	background-color: #014359;
 	text-align: center;
-	font-size: 22px;
+	font-size: 20px;
 	color: white;
 	padding: 5px 10px;
 	margin: 0px;
 	position: relative;
+}
+
+#moreDetails {
+	font-weight: bold;
 }
 
 a:link, a:visited {
