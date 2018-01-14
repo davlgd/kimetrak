@@ -16,7 +16,7 @@
 	function AddMoreDetailsButton()
 	{
 		let moreDetails = document.createElement('a');
-		moreDetails.setAttribute("href", "chrome-extension://" + chrome.runtime.id + "/html/showResults.html");
+		moreDetails.setAttribute("href", "/html/showResults.html");
 		moreDetails.setAttribute("target", "_blank");
 		moreDetails.setAttribute("class", "button");
 
@@ -61,7 +61,6 @@
 			}
 			else
 			{
-				console.log("host :" + infos.hostname);
 				listTrackersHead.textContent = chrome.i18n.getMessage("popupTitleNone");
 				listTrackers.textContent = "";
 			}	
