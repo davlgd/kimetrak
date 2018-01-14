@@ -3,6 +3,10 @@
 	const listTrackersHead = document.getElementById("listTrackersHead");
 	const listTrackers = document.getElementById("listTrackers");
 	const hostnamesList = document.createElement("ol");
+
+	const eventListener = document.getElementById("header"); 
+	eventListener.addEventListener("click", GoToWebsite, false); 
+		
 	listTrackers.appendChild(hostnamesList);
 	
 	AddMoreDetailsButton();	
@@ -16,11 +20,11 @@
 	function AddMoreDetailsButton()
 	{
 		let moreDetails = document.createElement('a');
-		moreDetails.setAttribute("href", "chrome-extension://" + chrome.runtime.id + "/html/showResults.html");
+		moreDetails.setAttribute("href", "/html/showResults.html");
 		moreDetails.setAttribute("target", "_blank");
 		moreDetails.setAttribute("class", "button");
 
-		let moreDetailsText = document.createTextNode("Obtenir plus de détails");
+		let moreDetailsText = document.createTextNode(chrome.i18n.getMessage("getMoreStats"));
 		moreDetails.appendChild(moreDetailsText);
 
 		document.getElementById("moreDetails").appendChild(moreDetails);
@@ -52,19 +56,23 @@
 			const infos = JSON.parse(response);
 			if (infos.count > 0)
 			{
-				const textPlural = infos.count < 2 ? " domaine tiers sur " : " domaines tiers sur ";
-				const fullTitle = infos.count + textPlural + infos.hostname;
+				const textPlural = infos.count < 2 ? "" : "s";
 
-				document.createTextNode("Obtenir plus de détails");
-				listTrackersHead.textContent = fullTitle;
+				document.createTextNode(chrome.i18n.getMessage("getMoreStats"));
+				listTrackersHead.textContent = chrome.i18n.getMessage("popupTitle", [infos.count, textPlural, infos.hostname]);
 				
 				FillRequestsList(infos.content, hostnamesList);
 			}
 			else
 			{
-				listTrackersHead.textContent = "Aucun domaine tiers détecté" + infos.hostname;
+				listTrackersHead.textContent = chrome.i18n.getMessage("popupTitleNone");
 				listTrackers.textContent = "";
 			}	
 		});
+	}
+
+	function GoToWebsite()
+	{
+		window.open("http://www.kimetrak.fr");
 	}
 })();

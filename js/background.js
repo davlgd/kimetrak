@@ -20,12 +20,12 @@
 	
 	chrome.windows.onFocusChanged.addListener(function (windowId)
 	{
-		if (windowId > 0) GetActiveTabAndClean("Changement de fenêtre");
+		if (windowId > 0) GetActiveTabAndClean(chrome.i18n.getMessage("changeWindow"));
 	});
 
 	chrome.tabs.onActivated.addListener(function (tab)
 	{
-		if (tab.tabId > 0) GetActiveTabAndClean("Changement d'onglet");
+		if (tab.tabId > 0) GetActiveTabAndClean(chrome.i18n.getMessage("changeTab"));
 	});
 	
 	chrome.webNavigation.onCommitted.addListener(function(thisCommit)
@@ -39,8 +39,8 @@
 
 				if ((isNewURL || isRefresh) && thisTab.url && tabInfos.id == thisTab.id)
 				{
-					if (isNewURL) ClearAndNotify("Changement d'URL", true);
-					if (isRefresh) ClearAndNotify("Rafraichissement de page", true);
+					if (isNewURL) ClearAndNotify(chrome.i18n.getMessage("changeURL"), true);
+					if (isRefresh) ClearAndNotify(chrome.i18n.getMessage("refreshPage"), true);
 
 					thisTab = tabInfos;
 					thisTab.hostname = new URL(tabInfos.url).hostname;
@@ -71,7 +71,6 @@
 							UpdateBadgeCountAndColor(thirdPartyRequestsArray.length, true);
 						}
 					}
-					else console.log("Requête first-party : " + thisRequestHostname);
 				}
 			}
 		)},
@@ -129,7 +128,11 @@
 	function isThirdPartyDomain(site, request)
 	{		
 		if (site.startsWith("www.")) site = site.substr(4);
-		return (request.indexOf(site) != -1) ? false:true;
+		
+		let result = request.indexOf(site) == -1;
+		if (!result && request.startsWith(site) && request.length != site.length) result = true;
+		
+		return result;
 	}
 	
 	function ExtractDataFromRequest(request)

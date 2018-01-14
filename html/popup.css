@@ -1,27 +1,69 @@
 body {
+	font-family: "Segoe UI", Tahoma, sans-serif;
+	background-color: #014359;
+	overflow: hidden;
+	font-size: 14px;
+	width: 500px;
 	margin: 0;
 }
 
 #main {
-	width: 500px;
+	background-color: #ffffff;
 }
 
-#main>div {
-	text-align: center
-}
-
-#showResults {
-	text-align: center;
-}
-
-#listTrackersHead {
-	background-color: #014359;
-	text-align: center;
-	font-size: 22px;
-	color: white;
+#header {
 	padding: 5px 10px;
+	font-size: 20px;
+	color: white;
+	height: 35px;
+}
+
+#header > img {
+	position: absolute;
+    top: 10px;
+}
+
+#extName {
+	position: absolute;
+	left: 40px;
+	top: 7px;
+}
+
+h1 {
+	padding: 10px;
+	text-decoration: underline;
+	text-align: center;
+	font-size: 16px;
 	margin: 0px;
-	position: relative;
+}
+
+#listTrackers {
+	overflow-x: hidden;
+	overflow-y: auto;
+	max-height: 450px;
+	margin: 0px;
+}
+
+#moreDetails {
+	text-align: center;
+	font-weight: bold;
+	padding-top: 5px;
+}
+
+.button {
+	background-color: #014359;
+	color: white!important ;
+	border-radius: 3px;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	margin: 12px 0px 12px 0px;
+}
+
+.button:hover {
+	background-color: #e88228;
 }
 
 a:link, a:visited {
@@ -31,19 +73,3 @@ a:link, a:visited {
 a:hover {
 	color: #e88228;
 }
-
-.button {
-	background-color: #014359;
-	color: white!important;
-	border-radius: 3px;
-    border: none;
-    padding: 5px 10px;
-    text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	margin-bottom: 12px;
-  }
-
-  .button:hover {
-	  background-color: #e88228;
-  }

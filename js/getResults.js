@@ -11,10 +11,10 @@
             ShowSummary (TPData);
 
             const title = document.getElementById("listTrackersHead");
-            title.textContent = "Listes des domaines tiers détectés par Kimetrak";
+            title.textContent = chrome.i18n.getMessage("statsTitle");
             
             const list = document.getElementById("listTrackers");
-            list.textContent = "Voici le détails de l'ensemble des domaines tiers détectés sur chaque site visité :";
+            list.textContent = chrome.i18n.getMessage("statsList");
 
             for (let i = 0; i < infos.length; i++)
             {
@@ -29,15 +29,7 @@
     function ShowSummary(dataSource)
     {
         const summary = document.getElementById("summary");
-            summary.textContent = "Sur l'ensemble de la session en cours, nous avons détecté " 
-                + dataSource.all.length 
-                + " requêtes vers " 
-                + dataSource.thirdPartyDomains.length
-                + " domaines tiers chargés depuis "
-                + dataSource.sites.length
-                + " site(s) que vous avez visités, dont "
-                + dataSource.thirdPartyDomainsToDisplay.length 
-                + " depuis plus d'un site :";
+            summary.textContent = chrome.i18n.getMessage("statsSummary", [dataSource.all.length, dataSource.thirdPartyDomains.length, dataSource.sites.length, dataSource.thirdPartyDomainsToDisplay.length]);
 
             const mshUL = document.createElement("ul");
             summary.appendChild(mshUL);
@@ -134,7 +126,7 @@
 
     function SwitchFoldableLists(e)
     {
-        const className = e.srcElement.id;
+        const className = e.target.id;
         const listName = className.replace("source","list");
         
         let newValue = document.getElementById(listName).attributes.class.value == "unfolded" ? "foldable" : "unfolded";
