@@ -3,6 +3,10 @@
   const listTrackersHead = document.getElementById('listTrackersHead')
   const listTrackers = document.getElementById('listTrackers')
   const hostnamesList = document.createElement('ol')
+
+  const eventListener = document.getElementById('header')
+  eventListener.addEventListener('click', GoToWebsite, false)
+
   listTrackers.appendChild(hostnamesList)
 
   AddMoreDetailsButton()
@@ -18,7 +22,7 @@
     moreDetails.setAttribute('target', '_blank')
     moreDetails.setAttribute('class', 'button')
 
-    let moreDetailsText = document.createTextNode('Obtenir plus de détails')
+    let moreDetailsText = document.createTextNode(chrome.i18n.getMessage('getMoreStats'))
     moreDetails.appendChild(moreDetailsText)
 
     document.getElementById('moreDetails').appendChild(moreDetails)
@@ -46,15 +50,19 @@
       if (infos && infos.count > 0) {
         const textPlural = infos.count < 2 ? ' domaine tiers sur ' : ' domaines tiers sur '
         const fullTitle = infos.count + textPlural + infos.hostname
-        document.createTextNode('Obtenir plus de détails')
-        listTrackersHead.textContent = fullTitle
+        document.createTextNode(chrome.i18n.getMessage('getMoreStats'))
+        listTrackersHead.textContent = chrome.i18n.getMessage('popupTitle', [infos.count, textPlural, infos.hostname])
         FillRequestsList(infos.thirdPartysHostnames)
       } else {
-        listTrackersHead.textContent = 'Aucun domaine tiers détecté'
+        listTrackersHead.textContent = chrome.i18n.getMessage('popupTitleNone')
         listTrackers.textContent = ''
       }
     } catch (e) {
       console.error(e)
     }
+  }
+
+  function GoToWebsite () {
+    window.open('http://www.kimetrak.fr')
   }
 })()

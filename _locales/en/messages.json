@@ -1,0 +1,60 @@
+{
+    "extDescription": {
+        "message": "This extension analyse who tracks you !"
+    },
+    "changeTab": {
+        "message": "Tab has changed"
+    },
+    "changeWindow": {
+        "message": "Window has changed"
+    },
+    "changeURL": {
+        "message": "URL has changed"
+    },
+    "refreshPage": {
+        "message": "Page has been refreshed"
+    },
+    "getMoreStats": {
+        "message": "Access stats"
+    },
+    "popupTitleNone": {
+        "message": "No third-party domain detected"
+    },
+    "popupTitle": {
+        "message": "$NBDOMAINS$ third-party domain$PLURAL$ on $HOSTNAME$",
+        "placeholders": {
+            "nbdomains": { 
+                "content": "$1"
+            },
+            "plural": { 
+                "content": "$2"
+            },
+            "hostname": { 
+                "content": "$3"
+            }
+        }
+    },
+    "statsTitle": {
+        "message": "List of third-party domains detected by Kimetrak"
+    },
+    "statsList": {
+        "message": "This is the list of all third-party domains loaded from every websites you visited :"
+    },
+    "statsSummary": {
+        "message": "During this session, $NBREQUESTS$ requests to $NBTPD$ third-party domains were detected, loaded from $NBSITES$ websites you visited. $NBMULTIPLETPD$ on more than one website :",
+        "placeholders": {
+            "nbrequests": { 
+                "content": "$1"
+            },
+            "nbtpd": { 
+                "content": "$2"
+            },
+            "nbsites": { 
+                "content": "$3"
+            },
+            "nbmultipletpd": { 
+                "content": "$4"
+            }
+        }
+    }
+}
