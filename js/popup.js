@@ -3,6 +3,10 @@
 	const listTrackersHead = document.getElementById("listTrackersHead");
 	const listTrackers = document.getElementById("listTrackers");
 	const hostnamesList = document.createElement("ol");
+
+	const eventListener = document.getElementById("header"); 
+	eventListener.addEventListener("click", GoToWebsite, false); 
+		
 	listTrackers.appendChild(hostnamesList);
 	
 	AddMoreDetailsButton();	
@@ -65,5 +69,10 @@
 				listTrackers.textContent = "";
 			}	
 		});
+	}
+
+	function GoToWebsite()
+	{
+		window.open("http://www.kimetrak.fr");
 	}
 })();
