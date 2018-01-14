@@ -20,7 +20,7 @@
 		moreDetails.setAttribute("target", "_blank");
 		moreDetails.setAttribute("class", "button");
 
-		let moreDetailsText = document.createTextNode("Obtenir plus de détails");
+		let moreDetailsText = document.createTextNode(chrome.i18n.getMessage("getMoreStats"));
 		moreDetails.appendChild(moreDetailsText);
 
 		document.getElementById("moreDetails").appendChild(moreDetails);
@@ -52,17 +52,17 @@
 			const infos = JSON.parse(response);
 			if (infos.count > 0)
 			{
-				const textPlural = infos.count < 2 ? " domaine tiers sur " : " domaines tiers sur ";
-				const fullTitle = infos.count + textPlural + infos.hostname;
+				const textPlural = infos.count < 2 ? "" : "s";
 
-				document.createTextNode("Obtenir plus de détails");
-				listTrackersHead.textContent = fullTitle;
+				document.createTextNode(chrome.i18n.getMessage("getMoreStats"));
+				listTrackersHead.textContent = chrome.i18n.getMessage("popupTitle", [infos.count, textPlural, infos.hostname]);
 				
 				FillRequestsList(infos.content, hostnamesList);
 			}
 			else
 			{
-				listTrackersHead.textContent = "Aucun domaine tiers détecté" + infos.hostname;
+				console.log("host :" + infos.hostname);
+				listTrackersHead.textContent = chrome.i18n.getMessage("popupTitleNone");
 				listTrackers.textContent = "";
 			}	
 		});

@@ -1,0 +1,60 @@
+{
+    "extDescription":{
+        "message": "Cette extension analyse qui vous traque !"
+    },
+    "changeTab":{
+        "message": "Changement d'onglet"
+    },
+    "changeWindow":{
+        "message": "Changement de fenêtre"
+    },
+    "changeURL":{
+        "message": "Changement d'URL"
+    },
+    "refreshPage":{
+        "message": "Rafraichissement de page"
+    },
+    "getMoreStats": {
+        "message": "Accéder aux statistiques"
+    },
+    "popupTitleNone": {
+        "message": "Aucun domaine tiers détecté"
+    },
+    "popupTitle": {
+        "message": "$NBDOMAINS$ domaine$PLURAL$ tiers sur $HOSTNAME$",
+        "placeholders": {
+            "nbdomains": { 
+                "content": "$1"
+            },
+            "plural": { 
+                "content": "$2"
+            },
+            "hostname": { 
+                "content": "$3"
+            }
+        }
+    },
+    "statsTitle": {
+        "message": "Listes des domaines tiers détectés par Kimetrak"
+    },
+    "statsList": {
+        "message": "Voici la liste de tous les domaines tiers détectés sur chaque site que vous avez visité :"
+    },
+    "statsSummary": {
+        "message": "Sur l'ensemble de la session en cours, $NBREQUESTS$ requêtes vers $NBTPD$ domaines tiers ont été détectées, chargées depuis $NBSITES$ sites que vous avez visités. $NBMULTIPLETPD$ depuis plus d'un site :",
+        "placeholders": {
+            "nbrequests": { 
+                "content": "$1"
+            },
+            "nbtpd": { 
+                "content": "$2"
+            },
+            "nbsites": { 
+                "content": "$3"
+            },
+            "nbmultipletpd": { 
+                "content": "$4"
+            }
+        }
+    }  
+}
