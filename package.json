@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "node ./node_modules/eslint/bin/eslint.js ."
+    "lint": "eslint ."
   },
   "author": "",
   "license": "ISC",
