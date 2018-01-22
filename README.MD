@@ -32,7 +32,7 @@ Le code est celui d'une extension Chrome, fonctionnant également sous Opera et 
 
 ### A savoir
 
-Cette extension est une preuve de concept pour le projet Kimetrak mené par [Next INpact](https://www.nextinpact.com). L'objectif final est de collecter les données concernant les domaines tiers chargés sur différents sites et d'identifier les finalités, recoupements, etc.
+Cette extension est une preuve de principe pour le projet Kimetrak mené par [Next INpact](https://www.nextinpact.com). L'objectif final est de collecter les données concernant les domaines tiers chargés sur différents sites et d'identifier les finalités, recoupements, etc.
 
 Pour le moment la détection des domaines tiers est encore relativement basique, notamment afin de limiter les cas de faux positifs. Parfois le compteur se remet à zéro du fait d'un signal envoyé par le site, ce qui peut fausser les résultats.
 
