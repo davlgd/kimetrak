@@ -1,0 +1,60 @@
+{
+    "extDescription": {
+        "message": "本附加元件會分析有誰在追蹤你！"
+    },
+    "changeTab": {
+        "message": "分頁已變更"
+    },
+    "changeWindow": {
+        "message": "視窗已變更"
+    },
+    "changeURL": {
+        "message": "URL 已變更"
+    },
+    "refreshPage": {
+        "message": "頁面已重新整理"
+    },
+    "getMoreStats": {
+        "message": "存取統計"
+    },
+    "popupTitleNone": {
+        "message": "未偵測到第三方網域"
+    },
+    "popupTitle": {
+        "message": "$NBDOMAINS$ 個第三方網域 $PLURAL$ 位於 $HOSTNAME$",
+        "placeholders": {
+            "nbdomains": { 
+                "content": "$1"
+            },
+            "plural": { 
+                "content": "$2"
+            },
+            "hostname": { 
+                "content": "$3"
+            }
+        }
+    },
+    "statsTitle": {
+        "message": "被 Kimetrak 偵測到的第三方網域清單"
+    },
+    "statsList": {
+        "message": "這是您造訪過的每個網頁所載入的所有第三方網域的清單："
+    },
+    "statsSummary": {
+        "message": "在此工作階段中，偵測到 $NBREQUESTS$ 個到 $NBTPD$ 個第三方網域的請求，從 $NBSITES$ 個您造訪過的網頁載入。$NBMULTIPLETPD$ 個在多於一個網頁上：",
+        "placeholders": {
+            "nbrequests": { 
+                "content": "$1"
+            },
+            "nbtpd": { 
+                "content": "$2"
+            },
+            "nbsites": { 
+                "content": "$3"
+            },
+            "nbmultipletpd": { 
+                "content": "$4"
+            }
+        }
+    }
+}
