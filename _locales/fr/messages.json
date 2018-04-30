@@ -1,17 +1,17 @@
 {
-    "extDescription":{
+    "extDescription": {
         "message": "Cette extension analyse qui vous traque !"
     },
-    "changeTab":{
+    "changeTab": {
         "message": "Changement d'onglet"
     },
-    "changeWindow":{
+    "changeWindow": {
         "message": "Changement de fenêtre"
     },
-    "changeURL":{
+    "changeURL": {
         "message": "Changement d'URL"
     },
-    "refreshPage":{
+    "refreshPage": {
         "message": "Rafraichissement de page"
     },
     "getMoreStats": {
@@ -23,13 +23,13 @@
     "popupTitle": {
         "message": "$NBDOMAINS$ domaine$PLURAL$ tiers sur $HOSTNAME$",
         "placeholders": {
-            "nbdomains": { 
+            "nbdomains": {
                 "content": "$1"
             },
-            "plural": { 
+            "plural": {
                 "content": "$2"
             },
-            "hostname": { 
+            "hostname": {
                 "content": "$3"
             }
         }
@@ -43,18 +43,18 @@
     "statsSummary": {
         "message": "Sur l'ensemble de la session en cours, $NBREQUESTS$ requêtes vers $NBTPD$ domaines tiers ont été détectées, chargées depuis $NBSITES$ sites que vous avez visités. $NBMULTIPLETPD$ depuis plus d'un site :",
         "placeholders": {
-            "nbrequests": { 
+            "nbrequests": {
                 "content": "$1"
             },
-            "nbtpd": { 
+            "nbtpd": {
                 "content": "$2"
             },
-            "nbsites": { 
+            "nbsites": {
                 "content": "$3"
             },
-            "nbmultipletpd": { 
+            "nbmultipletpd": {
                 "content": "$4"
             }
         }
-    }  
+    }
 }

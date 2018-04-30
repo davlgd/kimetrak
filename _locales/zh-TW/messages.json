@@ -23,13 +23,13 @@
     "popupTitle": {
         "message": "$NBDOMAINS$ 個第三方網域 $PLURAL$ 位於 $HOSTNAME$",
         "placeholders": {
-            "nbdomains": { 
+            "nbdomains": {
                 "content": "$1"
             },
-            "plural": { 
+            "plural": {
                 "content": "$2"
             },
-            "hostname": { 
+            "hostname": {
                 "content": "$3"
             }
         }
@@ -43,16 +43,16 @@
     "statsSummary": {
         "message": "在此工作階段中，偵測到 $NBREQUESTS$ 個到 $NBTPD$ 個第三方網域的請求，從 $NBSITES$ 個您造訪過的網頁載入。$NBMULTIPLETPD$ 個在多於一個網頁上：",
         "placeholders": {
-            "nbrequests": { 
+            "nbrequests": {
                 "content": "$1"
             },
-            "nbtpd": { 
+            "nbtpd": {
                 "content": "$2"
             },
-            "nbsites": { 
+            "nbsites": {
                 "content": "$3"
             },
-            "nbmultipletpd": { 
+            "nbmultipletpd": {
                 "content": "$4"
             }
         }

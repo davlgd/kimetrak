@@ -7,7 +7,9 @@ body {
 h1 {
     text-decoration: underline;
 }
-.source, .source_unfolded {
+
+.source,
+.source_unfolded {
     font-weight: bolder;
     text-decoration: underline;
     margin-bottom: 12px;
@@ -34,10 +36,11 @@ h1 {
     display: block;
 }
 
-a:link, a:visited {
+a:link,
+a:visited {
     color: #014359;
 }
 
 a:hover {
-	color: #e88228;
+    color: #e88228;
 }
