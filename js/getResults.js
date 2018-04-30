@@ -32,7 +32,7 @@
         for (let i = 0; i < dataSource.thirdPartyDomainsToDisplay.length; i++) {
             let mshLI = document.createElement("li");
             mshUL.appendChild(mshLI);
-            mshLI.textContent = dataSource.thirdPartyDomainsToDisplay[i];
+            mshLI.textContent = dataSource.thirdPartyDomainsToDisplay[i].domain + " (" + dataSource.thirdPartyDomainsToDisplay[i].nb + ")";
         }
     }
 
@@ -93,11 +93,14 @@
             } else thirdPartyDomainsNb[deduplicated[i].request]++;
         }
 
-        thirdPartyDomains.sort();
-
         for (let i = 0; i < thirdPartyDomains.length; i++) {
-            if (thirdPartyDomainsNb[thirdPartyDomains[i]] > 1) thirdPartyDomainsToDisplay.push(thirdPartyDomains[i] + " (" + thirdPartyDomainsNb[thirdPartyDomains[i]] + ")");
+            if (thirdPartyDomainsNb[thirdPartyDomains[i]] > 1) thirdPartyDomainsToDisplay.push({domain: thirdPartyDomains[i], nb:thirdPartyDomainsNb[thirdPartyDomains[i]] });
         }
+
+        thirdPartyDomains.sort();
+        thirdPartyDomainsToDisplay.sort(function(a,b){
+            return b.nb - a.nb;
+        });
 
         return {
             all: all,
