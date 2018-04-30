@@ -94,11 +94,11 @@
         }
 
         for (let i = 0; i < thirdPartyDomains.length; i++) {
-            if (thirdPartyDomainsNb[thirdPartyDomains[i]] > 1) thirdPartyDomainsToDisplay.push({domain: thirdPartyDomains[i], nb:thirdPartyDomainsNb[thirdPartyDomains[i]] });
+            if (thirdPartyDomainsNb[thirdPartyDomains[i]] > 1) thirdPartyDomainsToDisplay.push({ domain: thirdPartyDomains[i], nb: thirdPartyDomainsNb[thirdPartyDomains[i]] });
         }
 
         thirdPartyDomains.sort();
-        thirdPartyDomainsToDisplay.sort(function(a,b){
+        thirdPartyDomainsToDisplay.sort(function(a, b) {
             return b.nb - a.nb;
         });
 
