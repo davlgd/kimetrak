@@ -3,7 +3,7 @@
 
     "name": "Kimetrak",
     "description": "__MSG_extDescription__",
-    "version": "0.1.0.4",
+    "version": "0.1.0.5",
     "default_locale": "en",
     "icons": {
         "16": "ico/kimetrak-16.png",
