@@ -34,7 +34,7 @@ Le code est celui d'une extension Chrome, fonctionnant également sous Opera et 
 
 ### A savoir
 
-Cette extension est une preuve de concept pour le projet Kimetrak mené par [Next INpact](https://www.nextinpact.com). L'objectif final est de collecter les données concernant les domaines tiers chargés sur différents sites et d'identifier les finalités, recoupements, etc.
+Cette extension est une preuve de principe pour le projet Kimetrak mené par [Next INpact](https://www.nextinpact.com). L'objectif final est de collecter les données concernant les domaines tiers chargés sur différents sites et d'identifier les finalités, recoupements, etc.
 
 Pour le moment la détection des domaines tiers est encore relativement basique, notamment afin de limiter les cas de faux positifs. Parfois le compteur se remet à zéro du fait d'un signal envoyé par le site, ce qui peut fausser les résultats.
 
@@ -42,14 +42,12 @@ Pour le moment la détection des domaines tiers est encore relativement basique,
 
 Merci à [David Pieron](https://twitter.com/david_pieron) pour le logo du service
 
-
 -------------------
 # Kimetrak (who's tracking me)
 
 This add-on allows you know which third-party domains loaded from your daily sites and pull out statistics, such as domains tracking you over multiples websites.
 
 If you are an editor, this add-on allows you to know which third-party domains are loaded from your site.
-
 
 ## Usage
 
@@ -68,24 +66,19 @@ While in use, the add-on's badge can have different colors, with the following m
 
 After the last detected third-party domain request, the add-on waits a short time becore finishing it's analysis and validates the results. Default delay is 5 seconds.
 
-
-
 ## Privacy
 
 The add-on needs to monitor all the request done from your browser. Those data stay within your browser and no data is sent or exploited by anyone.
 
-
 ## Install
 
 The code is of a Chrome add-on, working on Opera and Vivaldi too. It works on Firefox too even if the detailed page doesn't display, a few graphical bugs are also present.
-
 
 ### Informations
 
 This add-on is a proof of concept for the Kimetrak (who's tracking me) done by [Next INpact](https://www.nextinpact.com). The final goal is to collect data about the third-party domains over different sites and to identify final goal, cross references, etc.
 
 For now, the third-party domain detection is relatively basic, as to limit false positive results. Sometimes, the counter is reset to 0 because of signal sent from the site, this can distort results.
-
 
 ### Thanks
 
